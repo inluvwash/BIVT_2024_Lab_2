@@ -33,7 +33,7 @@ public class Program
         //program.Task_2_9(10);
         //program.Task_2_10(10);
         //program.Task_2_11(10);
-        program.Task_2_12(10, 0);
+        //program.Task_2_12(10, 0);
         //program.Task_2_13(10, 5, 0);
         //program.Task_3_1();
         //program.Task_3_2(3, 2, 1);
@@ -83,11 +83,26 @@ public class Program
 
         if (a > 0)
         {
-            answer = Math.Max(a, b);
+            if (a > b)
+            {
+                answer = a;
+            }
+                
+            else
+            {
+                answer = b;
+            }
         }
         else
         {
-            answer = Math.Min(a, b);
+            if (a > b)
+            {
+                answer = b;
+            }
+            else
+            {
+                answer = a;
+            }
         }
 
         return answer;
@@ -96,7 +111,11 @@ public class Program
     {
         double answer = 0;
 
-        answer = Math.Max(Math.Min(a, b), c);
+        answer = b;
+        if (a < b)
+            answer = a;
+        if (c > answer)
+            answer = c;
 
         return answer;
     }
