@@ -267,12 +267,9 @@ public class Program
             double weight = double.Parse(Console.ReadLine());
             if (weight < 30)
             {
-                summr += 400;
-            }
-            else
-            {
                 summr += 200;
             }
+            
         }
         answer = summr/1000;
         Console.WriteLine(answer);
@@ -352,7 +349,7 @@ public class Program
             double x = Convert.ToDouble(input[0]);
             double y = Convert.ToDouble(input[1]);
 
-            if (x >= 0 && x <= Math.PI && Math.Sin(x) >= y)
+            if (x > 0 && x < Math.PI && Math.Sin(x) > y && y > 0)
             {
                 count += 1;
             }
@@ -406,9 +403,6 @@ public class Program
         int answer = 0;
         double answerLength = double.MaxValue;
 
-        double length1 = 100000000;
-        double nowlength = 1001010101010;
-        int num = 0;
 
         // code here
         for (int i = 0; i < n; i++)
@@ -418,19 +412,15 @@ public class Program
             double x = Convert.ToDouble(input[0]);
             double y = Convert.ToDouble(input[1]);
 
-            double length2 = Math.Sqrt(x * x + y * y);
-            if (length2 < length1)
+            double length1 = Math.Sqrt(x * x + y * y);
+            if (answerLength > length1)
             {
-                answerLength = length2;
+                answerLength = length1;
+                answer = i + 1;
             }
-            if (length2 < nowlength)
-            {
-                num = i + 1;
-            }
-
 
         }
-        answer = num;
+    
         Console.WriteLine(answer);
         Console.WriteLine(answerLength);
         // end
@@ -529,6 +519,11 @@ public class Program
         double answer = 0;
 
         // code here;
+        if (r < 0)
+        {
+            return 0;
+        }
+            
         switch (type)
         {
             case 0:
@@ -558,6 +553,11 @@ public class Program
         double answer = 0;
 
         // code here;
+        if (A <= 0 || B <= 0)
+        {
+            return 0;
+        }
+
         switch (type)
         {
             case 0:
@@ -708,43 +708,30 @@ public class Program
     }
     public (int, double) Task_3_8()
     {
-        int answer = 0, n = 0;
+
+        int answer = 0, num = 0; double x = 0, y = 0;
         double answerLength = double.MaxValue;
-        double length1 = 100000000;
-        double nowlength = 1001010101010;
-        int num = 0;
-        int l = 0;
-        // code here
-        Console.WriteLine("введите координаты точки:");
-        string line = Console.ReadLine();
-        while (line != "end")
+
+
+        while (double.TryParse(Console.ReadLine(), out x) && double.TryParse(Console.ReadLine(), out y))
         {
-            l += 1;
-            double x = double.Parse(line);
-            Console.WriteLine("введите координаты точки:");
-            line = Console.ReadLine();
+            num++;
 
-            if (line == "end") break;
-            double y = double.Parse(line);
-            double length2 = Math.Sqrt(x * x + y * y);
-            if (length2 < length1)
+            if (answerLength > Math.Sqrt(x * x + y * y))
             {
-                answerLength = length2;
+                answerLength = Math.Sqrt(x * x + y * y);
+                answer = num;
             }
-            if (length2 < nowlength)
-            {
-                num = l;
-            }
-
         }
-        answer = num/2 + num%2;
-        // end
+
         Console.WriteLine(answer);
         Console.WriteLine(answerLength);
-        // for test input in console: -1.2 0.7, 2 -2, 0.5 0.9, 1 1.5, -0.5 -0.5
-        // answer should be equal to the task_2_8 answer
 
         return (answer, answerLength);
+       
+        //// for test input in console: -1.2 0.7, 2 -2, 0.5 0.9, 1 1.5, -0.5 -0.5
+        //// answer should be equal to the task_2_8 answer
+
     }
     public double Task_3_9()
     {
